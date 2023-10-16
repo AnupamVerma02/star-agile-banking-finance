@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bankapp-eta-deploy
+  name: bankapp-eta-deployment
   labels:
     app: bankapp-eta-app1
 spec:
