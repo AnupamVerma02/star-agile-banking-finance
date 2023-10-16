@@ -8,15 +8,15 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: bankapp-eta-app1
+      app: bankapp-eta-app
   template:
     metadata:
       labels:
-        app: bankapp-eta-app1
+        app: bankapp-eta-app
     spec:
       containers:
       - name: bankapp-eta-container
-        image: anupamverma24/bankapp-eta-app1:V${BUILD_NUMBER}
+        image: anupamverma24/bankapp-eta-app:V${BUILD_NUMBER}
         ports:
         - containerPort: 8081
 ---
@@ -28,7 +28,7 @@ metadata:
     app: bankapp-eta-app1
 spec:
   selector:
-    app: bankapp-eta-app1
+    app: bankapp-eta-app
 
   type: NodePort
   ports:
