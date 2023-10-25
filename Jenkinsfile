@@ -34,12 +34,12 @@ pipeline {
 				sh 'docker version'
 				sh "docker build -t anupamverma24/bankapp-eta-app:V${BUILD_NUMBER} ."
 				sh 'docker image list'
-				//sh "docker tag anupamverma24/bankapp-eta-app:V${BUILD_NUMBER} anupamverma24/bankapp-eta-app:latest"
+				sh "docker tag anupamverma24/bankapp-eta-app:V${BUILD_NUMBER} anupamverma24/bankapp-eta-app:latest"
             }
               post {
                 success {
                   sh "echo 'Send mail docker Build Success'"
-                  mail to:"shivarpit9001@gmail.com", from: 'shivarpit9001@gmail.com', subject:"App Image Created Please validate", body: "App Image Created Please validate - anupamverma24/bankapp-eta-app:V${BUILD_NUMBER}"
+                  mail to:"shivarpit9001@gmail.com", from: 'shivarpit9001@gmail.com', subject:"App Image Created Please validate", body: "App Image Created Please validate - anupamverma24/bankapp-eta-app:latest"
                 }
                 failure {
                   sh "echo 'Send mail docker Build failure'"
@@ -65,7 +65,7 @@ pipeline {
 		}
 		stage('Publish_to_Docker_Registry') {
 			steps {
-				sh "docker push anupamverma24/bankapp-eta-app:V${BUILD_NUMBER}"
+				sh "docker push anupamverma24/bankapp-eta-app:latest"
 			}
 		}
 		stage('Approve - Deployment'){
