@@ -74,7 +74,7 @@ pipeline {
                 //----------------send an approval prompt-------------
                 //script {
                    //env.APPROVED_DEPLOY = input message: 'User input required Choose "Yes" | "Abort"'
-                       }
+                       //}
                 //-----------------end approval prompt------------
             //}
         //}
