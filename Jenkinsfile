@@ -68,23 +68,23 @@ pipeline {
 				sh "docker push anupamverma24/bankapp-eta-app:latest"
 			}
 		}
-		//stage('Approve - Deployment'){
-            //steps{
+		stage('Approve - Deployment'){
+            steps{
                 
                 //----------------send an approval prompt-------------
-                //script {
-                   //env.APPROVED_DEPLOY = input message: 'User input required Choose "Yes" | "Abort"'
-                       //}
+                script {
+                   env.APPROVED_DEPLOY = input message: 'User input required Choose "Yes" | "Abort"'
+                       }
                 //-----------------end approval prompt------------
-            //}
-        //}
-		//stage('Deploy to Kubernetes_Cluster') {
-			//steps {
-				//script {
-				  //sshPublisher(publishers: [sshPublisherDesc(configName: 'Kubernetes', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl apply -f k8smvndeployment.yaml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-				//}
-			//}
-		//}
+            }
+        }
+		stage('Deploy to Kubernetes_Cluster') {
+			steps {
+				script {
+				  sshPublisher(publishers: [sshPublisherDesc(configName: 'Kubernetes', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl apply -f k8smvndeployment.yaml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+				}
+			}
+		}
     }
 }	
     
